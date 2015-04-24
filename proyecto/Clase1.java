@@ -16,4 +16,8 @@ public class Clase1 extends Actor
     {
         // Add your action code here.
     }    
+    public void metodo2()
+    {
+        //por integrante 2
+    }
 }
