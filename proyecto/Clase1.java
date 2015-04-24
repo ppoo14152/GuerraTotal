@@ -20,4 +20,9 @@ public class Clase1 extends Actor
     {
         //por integrante 2
     }
+    
+    public void metodo1()
+    {
+        // Agregado por integrante1
+    }
 }
