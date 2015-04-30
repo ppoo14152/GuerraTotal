@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class Base extends Actor
+public class Base extends Mira
 {
     private int r;
     private int s;
@@ -14,11 +14,10 @@ public class Base extends Actor
     {
         if(Greenfoot.mouseClicked(this))
         {
-            int r=Greenfoot.getRandomNumber(100);
-            int s=Greenfoot.getRandomNumber(100);
-            getWorld().addObject(new Buldier(),getX()-r,getY()+s);
+            getWorld().addObject(new Selecciones(),getX(),getY());
         }
     }
+    
 }
   
 

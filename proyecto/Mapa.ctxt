@@ -1,4 +1,12 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Mapa()
-numComments=1
+comment1.params=
+comment1.target=void\ Mapa()
+comment2.params=
+comment2.target=void\ Ambiente()
+comment3.params=
+comment3.target=Base\ getBase()
+comment4.params=
+comment4.target=Vida\ getVida()
+numComments=5

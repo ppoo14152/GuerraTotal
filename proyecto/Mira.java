@@ -1,30 +1,59 @@
 import greenfoot.*;
-public class Mira extends Actor
+public class Mira extends ScrollActor
 {
     private int band;
+    private int limX;
+    private int limY;
+    private int limX2;
+    private int limY2;
+    private static final int MOVE_AMOUNT = 30;
     public Mira()
     {
         band=0;
+        limX=150;
+        limY=150;
+        limX2=650;
+        limY2=450;
     }
-    
-    public void act() 
+
+    public void act()
     {
-        if(Greenfoot.mouseMoved(null))
+        MouseInfo m = Greenfoot.getMouseInfo();
+        /*if(limX>m.getX()&&limY>m.getY())
+        {*/
+
+        if (m != null) 
         {
-            MouseInfo mouse=Greenfoot.getMouseInfo();
-            setLocation(mouse.getX(),mouse.getY());
+            turnTowards(m.getX(), m.getY());
+            getWorld().setCameraDirection(getRotation());
+            setLocation(m.getX(),m.getY());
         }
-        if(isAtEdge()&&getX()>600)
+   
+        if(Greenfoot.mouseMoved(null)&&limX2<m.getX()) 
         {
-            Greenfoot.setWorld(new Mapa1());
-        }
-        if(isAtEdge()&&getX()<1)//bandera para evitar que se regrese en el mismo mapa
+
+            getWorld().moveCamera(MOVE_AMOUNT);
+            limX2+=5;
+
+        }else
+        if(Greenfoot.mouseMoved(null)&&limX>m.getX()) 
         {
-            Greenfoot.setWorld(new Mapa());
-            band=1;
+
+            getWorld().moveCamera(MOVE_AMOUNT);
+            limX-=5;
+
+        }else
+        if(Greenfoot.mouseMoved(null)&&limY2<m.getY()) 
+        {
+            getWorld().moveCamera(MOVE_AMOUNT);
+            limY+=5;
+        }else
+        if(Greenfoot.mouseMoved(null)&&limY>m.getY()) 
+        {
+            getWorld().moveCamera(MOVE_AMOUNT);
+            limY-=5;
         }
-        
-    }  
-    
-    
+    }
+
+
 }
