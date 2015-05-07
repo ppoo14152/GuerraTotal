@@ -19,9 +19,6 @@ public class Mira extends ScrollActor
     public void act()
     {
         MouseInfo m = Greenfoot.getMouseInfo();
-        /*if(limX>m.getX()&&limY>m.getY())
-        {*/
-
         if (m != null) 
         {
             turnTowards(m.getX(), m.getY());
@@ -54,6 +51,6 @@ public class Mira extends ScrollActor
             limY-=5;
         }
     }
-
+   
 
 }

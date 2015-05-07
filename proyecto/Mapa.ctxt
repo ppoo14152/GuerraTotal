@@ -7,6 +7,4 @@ comment2.params=
 comment2.target=void\ Ambiente()
 comment3.params=
 comment3.target=Base\ getBase()
-comment4.params=
-comment4.target=Vida\ getVida()
-numComments=5
+numComments=4

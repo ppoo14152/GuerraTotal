@@ -7,6 +7,7 @@ public class Enemigo extends BaseEnemiga
     private int x;
     private int y;
     private int cambio;
+    private int detener;
     private GreenfootImage[] dia=new GreenfootImage[3];
     public Enemigo()
     {
@@ -15,6 +16,7 @@ public class Enemigo extends BaseEnemiga
         y=Greenfoot.getRandomNumber(100);
         h=0;
         cambio=0;
+        detener=0;
         for(i=0;i<3;i++)
             dia[i]=new GreenfootImage("dia"+i+".png");
     }
@@ -23,7 +25,7 @@ public class Enemigo extends BaseEnemiga
     {
         estorbo();
 
-        if(Greenfoot.getRandomNumber(4)==2)
+        if(Greenfoot.getRandomNumber(4)==2&&detener==0)
         {
             setImage(dia[h]);//permite el cambio de imagenes
             h+=1;
@@ -57,19 +59,23 @@ public class Enemigo extends BaseEnemiga
     {
         if(isTouching(Buldier.class))
         {
-
+            detener=1;
             if(Greenfoot.getRandomNumber(50)==25)
             {
+                detener=0;
                 removeTouching(Buldier.class);
 
             }
             ataque();
         }else
+        
         if(isTouching(Minibase.class))
         {
-
+            detener=1;
             if(Greenfoot.getRandomNumber(50)==25)
             {
+               
+        detener=0;
                 removeTouching(Minibase.class);
 
             }
@@ -79,9 +85,11 @@ public class Enemigo extends BaseEnemiga
 
     public void ataque()
     {
+        
         setImage(dia[cambio]);//permite el cambio de imagenes
         cambio+=1;
         if(cambio==2)
             cambio=0;
+          
     }
 }

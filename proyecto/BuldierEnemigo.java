@@ -11,8 +11,6 @@ public class BuldierEnemigo extends BaseEnemiga
         ale=Greenfoot.getRandomNumber(360);
         cambio=0;
         band=0;
-        //getWorld().addObject(new Vida(),getX()-50,getY());
-        //getWorld().getVida().getX();
     }
 
     public void act() 
@@ -45,7 +43,7 @@ public class BuldierEnemigo extends BaseEnemiga
         if(isTouching(Cosa.class))
         {
             turnTowards(getX(),getY());
-            //hace que el jugador ya no se mueva
+            
         }
     }
 }

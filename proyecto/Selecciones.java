@@ -8,21 +8,27 @@ public class Selecciones extends Base
     private int borra;
     private int x;
     private int y;
+    private int cont;
+    private int i;
     public Selecciones()
     {
         band=0;
         borra=0;
         x=0;
         y=0;
+        i=Greenfoot.getRandomNumber(2);
+        cont=0;
     }
    
     public void act() 
     {
         MouseInfo m = Greenfoot.getMouseInfo();
+        
         if(!Greenfoot.mouseClicked(this)&&band==0)
         {
             getWorld().addObject(new Buldier(),getX()-30,getY()-20);
             band=1;
+            
         }
         if(Greenfoot.mouseClicked(this)&&m.getX()>getX()&&m.getY()<getY())
         {
@@ -40,4 +46,5 @@ public class Selecciones extends Base
         
         
     }
+    
 }

@@ -17,6 +17,9 @@ public class Buldier extends Base
     private int car;
     private MouseInfo mouse;
     private int noUsar;
+    private int ale;
+    private int estaX;
+    private int estaY;
     public Buldier()
     {
         band=0;
@@ -25,7 +28,8 @@ public class Buldier extends Base
         copias=0;
         mira=new Mira();
         mouse = Greenfoot.getMouseInfo();
-        for(i=0;i<3;i++)//Movimiento
+        
+        for(i=0;i<3;i++)
             bu[i]=new GreenfootImage("bu_"+i+".png");
     }
 
@@ -37,10 +41,10 @@ public class Buldier extends Base
             band=1;
             removeTouching(Selecciones.class);
             removeTouching(Guerreros.class);
-            
         }
         if(band==1&&Greenfoot.mouseClicked(null))
         {
+            
             x=mouse.getX();
             y=mouse.getY();
             band2=1;
@@ -92,8 +96,9 @@ public class Buldier extends Base
     {
         if(band2==0&&Greenfoot.isKeyDown("c")&&band==1)//colocar "Presioe c para construir"
         {   
-            
-            getWorld().addObject(new Minibase(),getX(),getY());
+            estaX=getX();
+            estaY=getY();
+            getWorld().addObject(new Minibase(),estaX,estaY);
 
         }
 
@@ -104,4 +109,5 @@ public class Buldier extends Base
         if(x==getX()||y==getY())
         band2=0;
     }
+    
 }

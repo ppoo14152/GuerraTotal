@@ -8,13 +8,12 @@ public class Mapa extends ScrollWorld
     private int b;
     private int canti;
     private Base f;
-    protected Vida v;
     private Buldier bul;
     public Mapa()
     {    
         super(800, 600, 1, 1500,1500);
         Mapa();
-        v=new Vida();
+       
         bul=new Buldier();
 
         //canti=Greenfoot.getRandomNumber(2);
@@ -35,7 +34,11 @@ public class Mapa extends ScrollWorld
         addObject(be,1400,1300);
         MiniMapa mm=new MiniMapa();
         addObject(mm,720,50);
-        getVida();
+        Recurso re=new Recurso();
+        addObject(re,100,50);
+        CantidadUnidades cu=new CantidadUnidades();
+        addObject(cu,250,50);
+       
     }
 
     public void Ambiente()
@@ -54,8 +57,5 @@ public class Mapa extends ScrollWorld
         return f;
     }
 
-    public Vida getVida()
-    {
-        return v;
-    }
+
 }
