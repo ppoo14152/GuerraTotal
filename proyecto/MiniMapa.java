@@ -1,10 +1,13 @@
 import greenfoot.*;
+/**
+ * Solo es una imagen que hace referencia a todo el mapa
+ */
 
 public class MiniMapa extends Actor
 {
     
     public void act() 
     {
-       getWorld().addObject(new Localizacion(),660+getX()/10,10+getY()/10);
+       
     }    
 }

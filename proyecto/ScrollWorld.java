@@ -1,6 +1,11 @@
 import greenfoot.*;
 import java.util.ArrayList;
-
+/**
+ * Permite que en el escenario solo se pueda ver cierta parte de todo el total, al mover el mouse
+ * este se va a ir viendo mientras te hacercas a las orillas para ver mas camino, los objetos que se 
+ * encuentren en el entorno se quedaran en su posición y no seran afectados por la clase ( a menos 
+ * que quieras hacerlo).
+ */
 public abstract class ScrollWorld extends World
 {
     private final int width, height, cellSize;

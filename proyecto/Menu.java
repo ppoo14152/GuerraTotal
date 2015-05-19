@@ -1,21 +1,22 @@
 import greenfoot.*;
-
+/**
+ * En el se encuentra el nombre del juego jugar, records y ayuda a las cuales puedes 
+ * acceder al seleccionarlas
+ */
 public class Menu extends World
 {
-    
     public Menu()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
         BotonPlay bp=new BotonPlay();
-        addObject(bp,100,100);
+        addObject(bp,150,200);
         Ayuda ay=new Ayuda();
-        addObject(ay,100,250);
-    }
-    
-    public void act()
-    {
-       /* BotonPlay bp=new BotonPlay();
-        addObject(bp,400,300);*/
+        addObject(ay,150,400);
+        Total t=new Total();
+        addObject(t,500,200);
+        Records re=new Records();
+        addObject(re,400,500);
+        
+        
     }
 }

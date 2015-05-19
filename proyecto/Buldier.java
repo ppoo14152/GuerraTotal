@@ -1,86 +1,83 @@
 
-//import java.util.*;
 import greenfoot.*;
-
-public class Buldier extends Base
+/**
+ * Hace que al momento de seleccionar al guerrero a este lo puedas mover por todo el mapa indicandole hacia donde ir, al 
+ * momento de llegar al punto se detendra hasta que le vuelvas a dar otro click en otra posición.
+ *
+ * Al tener seleccionado al Buldier apachurras c para contruir.
+ */
+public class Buldier extends Mira
 {
-    
-    private int band;
+    private int usarlos;
     private int x;
     private int y;
-    private int band2;
+    private int jugandolo;
     private GreenfootImage[] bu=new GreenfootImage[3];
-    private Mira mira;
-    private int i,j;
-    private int cambio,cambio2;
-    private int copias;
-    private int car;
-    private MouseInfo mouse;
-    private int noUsar;
-    private int ale;
-    private int estaX;
-    private int estaY;
+    private int cambioImagen;
+    
     public Buldier()
     {
-        band=0;
-        band2=0;
-        cambio=0;
-        copias=0;
-        mira=new Mira();
-        mouse = Greenfoot.getMouseInfo();
+        usarlos=0;
+        jugandolo=0;
+        cambioImagen=0;
+       
         
-        for(i=0;i<3;i++)
-            bu[i]=new GreenfootImage("bu_"+i+".png");
+        for(int i=0;i<3;i++)
+            bu[i]=new GreenfootImage("bu"+i+".png");
     }
 
     public void act() 
     {
+        escogerTodo();
         MouseInfo mouse = Greenfoot.getMouseInfo();
+        
         if(Greenfoot.mouseClicked(this))
         {
-            band=1;
+            usarlos=1;
             removeTouching(Selecciones.class);
-            removeTouching(Guerreros.class);
+            removeTouching(Bomba.class);
         }
-        if(band==1&&Greenfoot.mouseClicked(null))
+        if(usarlos==1&&Greenfoot.mouseClicked(null))
         {
-            
+            jugandolo=1;
+            turnTowards(mouse.getX(),mouse.getY());
             x=mouse.getX();
             y=mouse.getY();
-            band2=1;
-            turnTowards(mouse.getX(),mouse.getY());
         }
-        
-        if(band2==1)
+        localizacionEjercito();
+        if(jugandolo==1)
         {
-            if(getX()>x-5&&getX()<x+5 || getY()>y-5&&getY()<y+5)//para el minimapa
+            
+            if(getX()>x-10&&getX()<x+10 || getY()>y-10&&getY()<y+10)//para el minimapa
             {
                 setImage(bu[1]);
-                band2=0;
-                seleccionEjercito();
+                jugandolo=0;
                 
             }
             else
             {
-                setImage(bu[cambio]);//permite el cambio de imagenes
-                cambio+=1;
-                if(cambio==2)
-                    cambio=0;
-                move(20);
+                setImage(bu[cambioImagen]);//permite el cambio de imagenes
+                cambioImagen+=1;
+                if(cambioImagen==2)
+                    cambioImagen=0;
+                move(10);
+                
             }
         }
         soltar();
         if(Greenfoot.isKeyDown("q"))//se detiene
-            band=0;
+            usarlos=0;
             else
         construir();
        
         estorbo();
     }
 
-    public void seleccionEjercito()
+    public void localizacionEjercito()
     {
+        
         getWorld().addObject(new Bueno(),660+(getX()/10),10+(getY()/10));
+        
     }
 
     public void estorbo()
@@ -88,17 +85,15 @@ public class Buldier extends Base
         if(isTouching(Cosa.class))
         {
            turnTowards(getX(),getY());
-           band2=0;//hace que el jugador ya no se mueva
+           jugandolo=0;//hace que el jugador ya no se mueva
         }
     }
 
     public void construir()
     {
-        if(band2==0&&Greenfoot.isKeyDown("c")&&band==1)//colocar "Presioe c para construir"
+        if(jugandolo==0&&Greenfoot.isKeyDown("c")&&usarlos==1)//colocar "Presioe c para construir"
         {   
-            estaX=getX();
-            estaY=getY();
-            getWorld().addObject(new Minibase(),estaX,estaY);
+            getWorld().addObject(new Minibase(),x,y);
 
         }
 
@@ -107,7 +102,14 @@ public class Buldier extends Base
     public void soltar()//checar que lo toque la cordenada
     {
         if(x==getX()||y==getY())
-        band2=0;
+        jugandolo=0;
     }
     
+    public void escogerTodo()
+    {
+        if(Greenfoot.isKeyDown("b"))
+        usarlos=1;
+        if(Greenfoot.isKeyDown("g"))
+        usarlos=0;
+    }
 }

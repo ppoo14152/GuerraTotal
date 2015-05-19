@@ -1,61 +1,59 @@
 import greenfoot.*;
-
+/**
+ * En el se han creado las 2 bases principales y colocado el escenario correspondiente, el super y
+ * lo que contiene como parametros las primeras es la extension de solo lo que se mira del mapa
+ * en cambio las 2 ultimas son el tamaño de la imagen completa.
+ */
 public class Mapa extends ScrollWorld
 {
-    private int x;
-    private int y;
-    private int a;
-    private int b;
-    private int canti;
     private Base f;
     private Buldier bul;
+    private World w;
     public Mapa()
     {    
         super(800, 600, 1, 1500,1500);
         Mapa();
-       
         bul=new Buldier();
-
-        //canti=Greenfoot.getRandomNumber(2);
+        
     }
-
+   /**
+    * Se inicializaron todo el enterno del mapa, los aleaorios son para que los obstaculos salgan 
+    * en diferentes posiciones de todo el mapa
+    */
     public void Mapa()
     {
-        a=Greenfoot.getRandomNumber(1500);
-        b=Greenfoot.getRandomNumber(1500);
-        x=150;
-        y=150;
+        GreenfootSound music=new GreenfootSound("ambiente.mp3");
+        music.playLoop();
+        music.setVolume(60);
+        
         Ambiente();
         Mira m=new Mira();
         addObject(m,400,300);
         f=new Base();
-        addObject(f,x,y);
+        addObject(f,150,150);
         BaseEnemiga be=new BaseEnemiga();
-        addObject(be,1400,1300);
+        addObject(be,1300,1300);
         MiniMapa mm=new MiniMapa();
         addObject(mm,720,50);
-        Recurso re=new Recurso();
-        addObject(re,100,50);
-        CantidadUnidades cu=new CantidadUnidades();
-        addObject(cu,250,50);
-       
+        Nivel re=new Nivel();
+        addObject(re,500,50);
+        
+        Reco rec=new Reco();
+        rec.guardaRecords(400);
+        showText("1",500,50);
     }
-
     public void Ambiente()
     {
-        while(Greenfoot.getRandomNumber(20)!=1)
+        for(int i=0;i<15;i++)
         {
-            a=Greenfoot.getRandomNumber(1500);
-            b=Greenfoot.getRandomNumber(1500);
+            int aleatorio=Greenfoot.getRandomNumber(1500);
+            int aleatorio2=Greenfoot.getRandomNumber(1500);
             Cosa am=new Cosa();
-            addObject(am,a,b);
+            if(aleatorio>150&&aleatorio2>150 && aleatorio<1400&&aleatorio2<1300)
+            addObject(am,aleatorio,aleatorio2);
+              
         }
+        
     }
-
-    public Base getBase()
-    {
-        return f;
-    }
-
 
 }

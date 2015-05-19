@@ -1,27 +1,37 @@
 import greenfoot.*;
-public class BuldierEnemigo extends BaseEnemiga
+/**
+ * Permite que el objeto se pueda mover por si solo por todo el mapa y pueda construir minibases 
+ * por todo el mapa.
+ */
+public class BuldierEnemigo extends Mira
 {
     private int ale;
-    private int cambio;
-    private int band;
-    private int contador;
-    private int co;
+    private int cambioImagen;
+    private int permite;
+    private int limite;
+    private GreenfootImage[] bu=new GreenfootImage[3];
     public BuldierEnemigo()
     {
         ale=Greenfoot.getRandomNumber(360);
-        cambio=0;
-        band=0;
+        cambioImagen=0;
+        permite=0;
+        limite=0;
+        for(int i=0;i<3;i++)
+            bu[i]=new GreenfootImage("bu_"+i+".png");
     }
 
     public void act() 
     {
         estorbo();
-        if(band==0)
+        if(permite==0)
         {
-            if(Greenfoot.getRandomNumber(4)==2)
-            {
-                move(30);
-            }
+            setImage(bu[cambioImagen]);
+            cambioImagen+=1;
+            if(cambioImagen==2)
+                cambioImagen=0;
+            move(10);
+            localizacionMapa();
+
             if(isAtEdge())
             {
                 turn(90);
@@ -31,19 +41,25 @@ public class BuldierEnemigo extends BaseEnemiga
             {
                 turn(ale);
             }
-            if(Greenfoot.getRandomNumber(200)==3)
+            if(Greenfoot.getRandomNumber(200)==3&&limite!=2)
             {
                 getWorld().addObject(new MinibaseEnemiga(),getX(),getY());
+                limite++;
             }
         }
     }
-    
+
     public void estorbo()
     {
         if(isTouching(Cosa.class))
         {
             turnTowards(getX(),getY());
-            
         }
+    }
+
+    public void localizacionMapa()
+    {
+        getWorld().addObject(new Malo(),660+(getX()/15),10+(getY()/15));
+
     }
 }

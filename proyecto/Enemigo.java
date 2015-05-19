@@ -1,39 +1,44 @@
 import greenfoot.*;
-public class Enemigo extends BaseEnemiga
+/**
+ * Aqui se realiza el movimiento de el enemigo, también cuando toca a el jugador lo ataca
+ * y cuando toca a un obstaculo cambia de dirección.
+ */
+public class Enemigo extends MinibaseEnemiga
 {
+    private int cambioImagen;
     private int a;
-    private int i;
-    private int h;
-    private int x;
-    private int y;
     private int cambio;
     private int detener;
-    private GreenfootImage[] dia=new GreenfootImage[3];
+    private GreenfootImage[] lord=new GreenfootImage[2];
+    private int bajaSangre;
+    private int dano;
     public Enemigo()
     {
         a=Greenfoot.getRandomNumber(360);
-        x=Greenfoot.getRandomNumber(100);
-        y=Greenfoot.getRandomNumber(100);
-        h=0;
+        cambioImagen=0;
         cambio=0;
         detener=0;
-        for(i=0;i<3;i++)
-            dia[i]=new GreenfootImage("dia"+i+".png");
+        bajaSangre=0;
+        dano=0;
+        
+        for(int i=0;i<2;i++)
+            lord[i]=new GreenfootImage("gm"+i+".png");
     }
 
     public void act() 
     {
         estorbo();
-
-        if(Greenfoot.getRandomNumber(4)==2&&detener==0)
+        localizacionMapa();
+        if(detener!=1)
         {
-            setImage(dia[h]);//permite el cambio de imagenes
-            h+=1;
-            if(h==3)
-                h=0;
-            move(20);
-
+            setImage(lord[cambioImagen]);//permite el cambio de imagenes
+            cambioImagen+=1;
+            if(cambioImagen==2)
+                cambioImagen=0;
+            move(10);
+            
         }
+        
         if(isAtEdge())
         {
             turn(90);
@@ -50,8 +55,8 @@ public class Enemigo extends BaseEnemiga
     {
         if(isTouching(Cosa.class))
         {
-            turnTowards(x,y);
-            //hace que el jugador ya no se mueva
+            turn(180);
+            
         }
     }
 
@@ -59,37 +64,107 @@ public class Enemigo extends BaseEnemiga
     {
         if(isTouching(Buldier.class))
         {
+            bajaSangre++;
             detener=1;
-            if(Greenfoot.getRandomNumber(50)==25)
+            if(bajaSangre==20)
             {
-                detener=0;
-                removeTouching(Buldier.class);
-
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==2)
+            {
+                    removeTouching(Buldier.class);
+                    
             }
             ataque();
         }else
-        
+
         if(isTouching(Minibase.class))
         {
+            bajaSangre++;
             detener=1;
-            if(Greenfoot.getRandomNumber(50)==25)
+            if(bajaSangre==40)
             {
-               
-        detener=0;
-                removeTouching(Minibase.class);
-
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==5)
+            {
+                    removeTouching(Minibase.class);
+                    
             }
             ataque();
         }
+        else
+        if(isTouching(Guerreros.class))
+        {
+            bajaSangre++;
+            detener=1;
+            if(bajaSangre==30)
+            {
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==3)
+            {
+                    removeTouching(Guerreros.class);
+                    
+            }
+            ataque();
+        }
+        else
+        if(isTouching(Guerrero2.class))
+        {
+            bajaSangre++;
+            detener=1;
+            if(bajaSangre==30)
+            {
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==3)
+            {
+                    removeTouching(Guerrero2.class);
+                    
+            }
+            ataque();
+        }
+        else
+        if(isTouching(Bomba.class))
+        {
+            bajaSangre++;
+            detener=1;
+            if(bajaSangre==20)
+            {
+                
+               removeTouching(Bomba.class);
+            }
+            ataque();
+        }
+        
     }
 
     public void ataque()
     {
-        
-        setImage(dia[cambio]);//permite el cambio de imagenes
+
+        setImage(lord[cambio]);//permite el cambio de imagenes
         cambio+=1;
         if(cambio==2)
             cambio=0;
-          
+
     }
+
+    public void localizacionMapa()
+    {
+
+        getWorld().addObject(new Malo(),680+(getX()/10),20+(getY()/10));
+
+    }
+    
+    
 }
+

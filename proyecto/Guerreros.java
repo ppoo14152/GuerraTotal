@@ -1,64 +1,78 @@
 import greenfoot.*;
+/**
+ * Hace que al momento de seleccionar al guerrero a este lo puedas mover por todo el mapa indicandole hacia donde ir, al 
+ * momento de llegar al punto se detendra hasta que le vuelvas a dar otro click en otra posición.
+ * Cuando toca a un enemigo este luchara con él hasta perder o ganar.
+ */
 public class Guerreros extends Minibase
 {
-    private int band;
+    private int usarlos;
+    private int manejarlo;
+    private int cambiaImagen;
+    private GreenfootImage[] dragon=new GreenfootImage[4];
+    private int cambioIma;
+    private int bajaSangre;
+    private int dano;
     private int x;
     private int y;
-    private int band2;
-    private int i;
-    private int h;
-    private GreenfootImage[] dragon=new GreenfootImage[4];
-    private int cambio;
     public Guerreros()
     {
-        band=0;
-        band2=0;
-        h=0;
-        cambio=0;
-        for(i=0;i<4;i++)
+        usarlos=0;
+        manejarlo=0;
+        cambiaImagen=0;
+        cambioIma=0;
+        bajaSangre=0;
+        dano=0;
+        for(int i=0;i<4;i++)
             dragon[i]=new GreenfootImage("dragon_"+i+".png");
-     
-        
+
     }
     public void act() 
     {
-       MouseInfo mouse=Greenfoot.getMouseInfo();  
-       elimina();
-       if(Greenfoot.mouseClicked(this))
-       {
-           band=1;
-           removeTouching(MiniSelecciones.class);
-           removeTouching(Guerrero2.class);
-       }
-       if(band==1&&Greenfoot.mouseClicked(null))
-       {
-           x=mouse.getX();
-           y=mouse.getY();
-           band2=1;
-           turnTowards(mouse.getX(),mouse.getY());
-       }
-       if(band2==1)
-       {
+        escogerTodo();
+        MouseInfo mouse=Greenfoot.getMouseInfo();  
+        estorbo();
+        elimina();
+        if(Greenfoot.mouseClicked(this))
+        {
+            usarlos=1;
+            removeTouching(MiniSelecciones.class);
+            removeTouching(Guerrero2.class);
+        }
+        if(usarlos==1&&Greenfoot.mouseClicked(null))
+        {
+            x=mouse.getX();
+            y=mouse.getY();
+            manejarlo=1;
+            turnTowards(mouse.getX(),mouse.getY());
+            GreenfootSound music=new GreenfootSound("alas.mp3");
+            music.play();
+            music.setVolume(40);
+        }
+        localizacionEjercito();
+        if(manejarlo==1)
+        {
             if(getX()>x-5&&getX()<x+5||getY()>y-5&&getY()<y+5)
             { setImage(dragon[3]);
-                band2=0;
+                manejarlo=0;
             }
             else
             {
-               setImage(dragon[h]);//permite el cambio de imagenes
-               h+=1;
-               if(h==4)
-               h=0;
-               move(20); 
+                //Greenfoot.playSound("dragon.mp3");
+                setImage(dragon[cambiaImagen]);//permite el cambio de imagenes
+                cambiaImagen+=1;
+                if(cambiaImagen==4)
+                    cambiaImagen=0;
+                move(20); 
             }  
-       }  
-       if(Greenfoot.isKeyDown("q"))
-          band=0;
+        }  
+        if(Greenfoot.isKeyDown("q"))
+            usarlos=0;
     }    
-    
-    public void seleccionEjercito(int x,int y)
+
+    public void localizacionEjercito()
     {
-        getWorld().addObject(new Bueno(),660+(x/10),10+(y/10));
+        getWorld().addObject(new Bueno(),660+(getX()/10),10+(getY()/10));
 
     }
 
@@ -66,42 +80,110 @@ public class Guerreros extends Minibase
     {
         if(isTouching(BuldierEnemigo.class))
         {
-            band=1;
-            if(Greenfoot.getRandomNumber(50)==25)
+            bajaSangre++;
+            if(bajaSangre==20)
             {
-                removeTouching(BuldierEnemigo.class);
-                band=0;
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==2)
+            {
+                    removeTouching(BuldierEnemigo.class);
+                    
             }
             ataque();
         }else
+
         if(isTouching(MinibaseEnemiga.class))
         {
-            band=1;
-            if(Greenfoot.getRandomNumber(50)==25)
+            bajaSangre++;
+            if(bajaSangre==40)
             {
-                removeTouching(MinibaseEnemiga.class);
-                band=0;
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==5)
+            {
+                    removeTouching(MinibaseEnemiga.class);
+                    
             }
             ataque();
         }
         else
         if(isTouching(Enemigo.class))
         {
-            band=1;
-            if(Greenfoot.getRandomNumber(50)==25)
+            bajaSangre++;
+            if(bajaSangre==30)
             {
-                removeTouching(Enemigo.class);
-                band=0;
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==3)
+            {
+                    removeTouching(Enemigo.class);
+                    
             }
             ataque();
         }
-    }
+        else
+        if(isTouching(Enemigo2.class))
+        {
+            bajaSangre++;
+            if(bajaSangre==30)
+            {
+                
+                dano+=1;
+                bajaSangre=0;
+            }
+            if(dano==3)
+            {
+                    removeTouching(Enemigo2.class);
+                    
+            }
+            ataque();
+            
+        }
+         else
+        if(isTouching(BombaEnemiga.class))
+        {
+            bajaSangre++;
+            
+            if(bajaSangre==20)
+            {
+                
+               removeTouching(BombaEnemiga.class);
+            }
+            ataque();
+        }
+    
+}
 
-    public void ataque()
+   public void ataque()
     {
-        setImage(dragon[cambio]);//permite el cambio de imagenes
-        cambio+=1;
-        if(cambio==2)
-            cambio=0;
+        setImage(dragon[cambioIma]);//permite el cambio de imagenes
+        cambioIma+=1;
+        if(cambioIma==2)
+            cambioIma=0;
+    }
+    
+    public void escogerTodo()
+    {
+        if(Greenfoot.isKeyDown("g"))
+        usarlos=1;
+        if(Greenfoot.isKeyDown("b"))
+        usarlos=0;
+       
+    }
+    
+    public void estorbo()
+    {
+        if(isTouching(Cosa.class))
+        {
+           turnTowards(getX(),getY());
+          manejarlo=0;//hace que el jugador ya no se mueva
+        }
     }
 }

@@ -1,5 +1,8 @@
 import greenfoot.*;
-
+/**
+ * Con esto hace que los actores no se vean involucrados al momento de que se realiza el scroll ya 
+ * que sin ella se moverian con el mapa y no por ellos mismos
+ */
 public abstract class ScrollActor extends Actor
 {
     private int camX, camY;
