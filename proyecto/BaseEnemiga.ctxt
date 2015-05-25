@@ -3,4 +3,5 @@ comment0.params=
 comment0.target=BaseEnemiga()
 comment1.params=
 comment1.target=void\ act()
+comment1.text=\r\n\ Crea\ a\ los\ soldados.\r\n
 numComments=2

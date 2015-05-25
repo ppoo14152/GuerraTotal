@@ -3,4 +3,5 @@ comment0.params=
 comment0.target=Selecciones()
 comment1.params=
 comment1.target=void\ act()
+comment1.text=\r\n\ Al\ momento\ de\ elegir\ borra\ la\ otra\ opcion\ y\ te\ hace\ el\ objeto.\r\n
 numComments=2

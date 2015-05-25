@@ -12,3 +12,4 @@ public class Cosa extends Mira
         turn(i);
     }
 }
+

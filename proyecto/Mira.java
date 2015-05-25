@@ -1,7 +1,7 @@
 import greenfoot.*;
 /**
  * Es con la que se realiza todo, con ella puedes moverte por todo el mapa,
- * seleccionar a tus unidades y moverlas por todo el mapa.
+ * seleccionar a tus unidades y moverlas por todo el mapa
  */
 public class Mira extends ScrollActor
 {
@@ -20,7 +20,9 @@ public class Mira extends ScrollActor
         limY2=450;
         
     }
-
+    /**
+     * Mueve la camara cuando la mira llegue a las orillas y al momento de moverla
+     */
     public void act()
     {
         MouseInfo m = Greenfoot.getMouseInfo();

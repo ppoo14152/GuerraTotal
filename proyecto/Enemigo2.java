@@ -5,34 +5,38 @@ import greenfoot.*;
  */
 public class Enemigo2 extends MinibaseEnemiga
 {
-    private int a;
     private int cambioImagen;
     private int cambio;
     private int detener;
-    private GreenfootImage[] lord=new GreenfootImage[4];
+    private GreenfootImage[] lord=new GreenfootImage[2];
     private int bajaSangre;
     private int dano;
     public Enemigo2()
     {
-        a=Greenfoot.getRandomNumber(360);
+        
         cambioImagen=0;
         cambio=0;
         detener=0;
         bajaSangre=0;
         dano=0;
-        for(int i=0;i<4;i++)
-            lord[i]=new GreenfootImage("lord"+i+".png");
+        
+        for(int i=0;i<2;i++)
+            lord[i]=new GreenfootImage("gm"+i+".png");
     }
-
+   /**
+    * Permite el movimiento del enemigo y los movimientos del mismo.
+    * Hace que el enemigo al tocar la orilla o cada cierto tiempo girar.
+    */
     public void act() 
     {
+        int aleatorioGiro=Greenfoot.getRandomNumber(360);
         estorbo();
         localizacionMapa();
         if(detener!=1)
         {
             setImage(lord[cambioImagen]);//permite el cambio de imagenes
             cambioImagen+=1;
-            if(cambioImagen==4)
+            if(cambioImagen==2)
                 cambioImagen=0;
             move(10);
             
@@ -44,12 +48,14 @@ public class Enemigo2 extends MinibaseEnemiga
         }
         if(Greenfoot.getRandomNumber(50)==3 || isAtEdge())
         {
-            turn(a);
+            turn(aleatorioGiro);
         }
         elimina(); 
 
     }
-
+    /**
+     * Hce que cambie de rumbo al momento de topar con un muro.
+     */
     public void estorbo()
     {
         if(isTouching(Cosa.class))
@@ -58,7 +64,9 @@ public class Enemigo2 extends MinibaseEnemiga
             
         }
     }
-
+    /**
+     * derrota a tus unidades al momento de tocarlas después de haber conbatido
+     */
     public void elimina()//cuando toca a los enemigos
     {
         if(isTouching(Buldier.class))
@@ -71,7 +79,7 @@ public class Enemigo2 extends MinibaseEnemiga
                 dano+=1;
                 bajaSangre=0;
             }
-            if(dano==3)
+            if(dano==2)
             {
                     removeTouching(Buldier.class);
                     
@@ -145,9 +153,10 @@ public class Enemigo2 extends MinibaseEnemiga
             ataque();
         }
         
-       
-    
-}
+    }
+    /**
+     * Simula un ataque al cambiar de imagenes
+     */
     public void ataque()
     {
 
@@ -157,14 +166,16 @@ public class Enemigo2 extends MinibaseEnemiga
             cambio=0;
 
     }
-
+    /**
+     * Hace aparecer un punto en el mini mapa indicando que existe en el mundo.
+     * 
+     */
     public void localizacionMapa()
     {
 
         getWorld().addObject(new Malo(),680+(getX()/10),20+(getY()/10));
 
     }
-    
     
     
 }

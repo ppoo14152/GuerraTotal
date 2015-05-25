@@ -3,4 +3,5 @@ comment0.params=
 comment0.target=Reco()
 comment1.params=puntos
 comment1.target=void\ guardaRecords(int)
+comment1.text=\r\n\ Guarda\ los\ puntos\ en\ la\ tabla\ de\ recors.\r\n
 numComments=2

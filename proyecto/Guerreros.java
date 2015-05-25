@@ -27,6 +27,11 @@ public class Guerreros extends Minibase
             dragon[i]=new GreenfootImage("dragon_"+i+".png");
 
     }
+    /**
+     * Crea el movimiento y el cambio de imagenes al momento de moverse.
+     * Hace que se detenga en la coordenada donde el jugador le indico a donde llegar.
+     * Cuando le aplanas la tecla q ya no usaras a esta unidad
+     */
     public void act() 
     {
         escogerTodo();
@@ -58,7 +63,6 @@ public class Guerreros extends Minibase
             }
             else
             {
-                //Greenfoot.playSound("dragon.mp3");
                 setImage(dragon[cambiaImagen]);//permite el cambio de imagenes
                 cambiaImagen+=1;
                 if(cambiaImagen==4)
@@ -69,14 +73,18 @@ public class Guerreros extends Minibase
         if(Greenfoot.isKeyDown("q"))
             usarlos=0;
     }    
-
+    /**
+     * Coloca un punto en el minimapa para saber que existe
+     */
     public void localizacionEjercito()
     {
         getWorld().addObject(new Bueno(),660+(getX()/10),10+(getY()/10));
 
     }
-
-    public void elimina()//cuando toca a los enemigos
+/**
+ * Elimina a los enemigos que toca, esto después de haber convatido con ellos 
+ */
+    public void elimina()
     {
         if(isTouching(BuldierEnemigo.class))
         {
@@ -160,7 +168,9 @@ public class Guerreros extends Minibase
         }
     
 }
-
+   /**
+    * Simula con imagenes un ataque.
+    */
    public void ataque()
     {
         setImage(dragon[cambioIma]);//permite el cambio de imagenes
@@ -168,7 +178,9 @@ public class Guerreros extends Minibase
         if(cambioIma==2)
             cambioIma=0;
     }
-    
+    /**
+     * Seleccionas a todos los guerreros cuando aplanas g
+     */
     public void escogerTodo()
     {
         if(Greenfoot.isKeyDown("g"))
@@ -177,7 +189,9 @@ public class Guerreros extends Minibase
         usarlos=0;
        
     }
-    
+    /**
+     * Hace que los obstaculos no te dejen pasar
+     */
     public void estorbo()
     {
         if(isTouching(Cosa.class))

@@ -1,9 +1,4 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Mapa2()
-comment1.params=
-comment1.target=void\ Mapa()
-comment1.text=\r\n\ Se\ inicializaron\ todo\ el\ enterno\ del\ mapa,\ los\ aleaorios\ son\ para\ que\ los\ obstaculos\ salgan\ \r\n\ en\ diferentes\ posiciones\ de\ todo\ el\ mapa\r\n
-comment2.params=
-comment2.target=void\ Ambiente()
-numComments=3
+numComments=1

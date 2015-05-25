@@ -4,9 +4,11 @@ import greenfoot.*;
  */
 public class Nivel extends Actor
 {
+    private int nivel;
     private World w;
     public Nivel()
-    {  
+    {
+        nivel=1;
         
     }
     

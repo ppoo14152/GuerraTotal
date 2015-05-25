@@ -19,7 +19,10 @@ public class BuldierEnemigo extends Mira
         for(int i=0;i<3;i++)
             bu[i]=new GreenfootImage("bu_"+i+".png");
     }
-
+    /**
+     * Se realiza el movimiento, cambio de imagenes al moverse y las condiciones al tocar
+     * la orilla y coloque una minibaseEnemiga.
+     */
     public void act() 
     {
         estorbo();
@@ -48,7 +51,10 @@ public class BuldierEnemigo extends Mira
             }
         }
     }
-
+    
+    /**
+     * No deja que choque con los obsatculos, lo hace girar
+     */
     public void estorbo()
     {
         if(isTouching(Cosa.class))
@@ -56,7 +62,9 @@ public class BuldierEnemigo extends Mira
             turnTowards(getX(),getY());
         }
     }
-
+    /**
+     * Pone un punto rojo en el minimapa para indicar que existe
+     */
     public void localizacionMapa()
     {
         getWorld().addObject(new Malo(),660+(getX()/15),10+(getY()/15));

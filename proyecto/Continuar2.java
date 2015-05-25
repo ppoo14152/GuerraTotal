@@ -3,6 +3,7 @@ import greenfoot.*;
  * Permite seguir al tercer nivel al seleccionarla
  */
 
+
 public class Continuar2 extends Actor
 {
     private World w;

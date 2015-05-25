@@ -1,32 +1,28 @@
 import greenfoot.*;
-/**
- * Hace que al momento de seleccionar al guerrero a este lo puedas mover por todo el mapa indicandole hacia donde ir, al 
- * momento de llegar al punto se detendra hasta que le vuelvas a dar otro click en otra posición.
- * Cuando toca a un enemigo este luchara con él hasta perder o ganar.
- */
 public class Guerrero2 extends Minibase
 {
     private int usarlos;
     private int x;
     private int y;
-    private int moverlo;
-    private int cambioImagen;
+    private int band2;
+    private int i;
+    private int h;
     private GreenfootImage[] lord=new GreenfootImage[2];
-    private int cambioIma;
+    private int cambio;
     private int bajaSangre;
     private int dano;
     private int tocar;
     public Guerrero2()
     {
         usarlos=0;
-        moverlo=0;
-        cambioImagen=0;
-        cambioIma=0;
+        band2=0;
+        h=0;
+        cambio=0;
         bajaSangre=0;
         dano=0;
         tocar=0;
    
-        for(int i=0;i<2;i++)
+        for(i=0;i<2;i++)
             lord[i]=new GreenfootImage("g"+i+".png");
         
     }
@@ -47,28 +43,28 @@ public class Guerrero2 extends Minibase
         {
             x=mouse.getX();
             y=mouse.getY();
-            moverlo=1;
+            band2=1;
             turnTowards(mouse.getX(),mouse.getY());
             GreenfootSound musica=new GreenfootSound("Lucha.mp3");
             musica.play();
             musica.setVolume(30);
         }
         localizacionEjercito();
-        if(moverlo==1)
+        if(band2==1)
         {
             
             if(getX()>x-5&&getX()<x+5||getY()>y-5&&getY()<y+5)
             { setImage(lord[1]);
-                moverlo=0;
+                band2=0;
                 
             }
             else
             {
                 
-                setImage(lord[cambioImagen]);//permite el cambio de imagenes
-                cambioImagen+=1;
-                if(cambioImagen==2)
-                    cambioImagen=0;
+                setImage(lord[h]);//permite el cambio de imagenes
+                h+=1;
+                if(h==2)
+                    h=0;
                 move(10); 
                 
             }  
@@ -175,10 +171,10 @@ public class Guerrero2 extends Minibase
        efecto.play();
        efecto.setVolume(15);
         
-        setImage(lord[cambioIma]);//permite el cambio de imagenes
-        cambioIma+=1;
-        if(cambioIma==2)
-            cambioIma=0;
+        setImage(lord[cambio]);//permite el cambio de imagenes
+        cambio+=1;
+        if(cambio==2)
+            cambio=0;
     }
     
     public void escogerTodo()
@@ -195,7 +191,7 @@ public class Guerrero2 extends Minibase
         if(isTouching(Cosa.class))
         {
            turnTowards(getX(),getY());
-           moverlo=0;
+           band2=0;//hace que el jugador ya no se mueva
         }
     }
 }

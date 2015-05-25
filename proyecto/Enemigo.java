@@ -6,7 +6,6 @@ import greenfoot.*;
 public class Enemigo extends MinibaseEnemiga
 {
     private int cambioImagen;
-    private int a;
     private int cambio;
     private int detener;
     private GreenfootImage[] lord=new GreenfootImage[2];
@@ -14,7 +13,7 @@ public class Enemigo extends MinibaseEnemiga
     private int dano;
     public Enemigo()
     {
-        a=Greenfoot.getRandomNumber(360);
+        
         cambioImagen=0;
         cambio=0;
         detener=0;
@@ -24,9 +23,13 @@ public class Enemigo extends MinibaseEnemiga
         for(int i=0;i<2;i++)
             lord[i]=new GreenfootImage("gm"+i+".png");
     }
-
+   /**
+    * Permite el movimiento del enemigo y los movimientos del mismo.
+    * Hace que el enemigo al tocar la orilla o cada cierto tiempo girar.
+    */
     public void act() 
     {
+        int aleatorioGiro=Greenfoot.getRandomNumber(360);
         estorbo();
         localizacionMapa();
         if(detener!=1)
@@ -45,12 +48,14 @@ public class Enemigo extends MinibaseEnemiga
         }
         if(Greenfoot.getRandomNumber(50)==3 || isAtEdge())
         {
-            turn(a);
+            turn(aleatorioGiro);
         }
         elimina(); 
 
     }
-
+    /**
+     * Hce que cambie de rumbo al momento de topar con un muro.
+     */
     public void estorbo()
     {
         if(isTouching(Cosa.class))
@@ -59,7 +64,9 @@ public class Enemigo extends MinibaseEnemiga
             
         }
     }
-
+    /**
+     * derrota a tus unidades al momento de tocarlas después de haber conbatido
+     */
     public void elimina()//cuando toca a los enemigos
     {
         if(isTouching(Buldier.class))
@@ -147,7 +154,9 @@ public class Enemigo extends MinibaseEnemiga
         }
         
     }
-
+    /**
+     * Simula un ataque al cambiar de imagenes
+     */
     public void ataque()
     {
 
@@ -157,7 +166,10 @@ public class Enemigo extends MinibaseEnemiga
             cambio=0;
 
     }
-
+    /**
+     * Hace aparecer un punto en el mini mapa indicando que existe en el mundo.
+     * 
+     */
     public void localizacionMapa()
     {
 

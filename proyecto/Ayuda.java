@@ -8,14 +8,15 @@ public class Ayuda extends Actor
     private World w;
     public Ayuda()
     {
+        
         w=getWorld();
     }
-
+    
     public void act() 
     {
         otroMundo();
     }  
-
+   
     public void otroMundo()
     {
         if(Greenfoot.mouseClicked(this))
@@ -24,5 +25,6 @@ public class Ayuda extends Actor
             Greenfoot.setWorld(w);
         } 
     }
+
 
 }

@@ -1,15 +1,15 @@
 import greenfoot.*;
-/**
- * Permite que salgan enemigos aleatoriamente.
- */
+
 public class MinibaseEnemiga extends Mira
 {
-    
+    private int r;
+    private int s;
+    private int band;
     private int limite;
     
     public MinibaseEnemiga()
     {
-       
+        band=0;
         limite=0;
     }
    

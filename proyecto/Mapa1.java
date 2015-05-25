@@ -1,15 +1,15 @@
 import greenfoot.*;
+/**
+ * Se ingresa la base 1
+ */
 
-public class Mapa1 extends World
+public class Mapa1 extends Mapa
 {
-    public int x;
-    public int y;
+   
     public Mapa1()
-    {    
-       super(800, 600, 1); 
-       Mira m=new Mira();
-       addObject(m,1,1);
-       Base b=new Base();
-       addObject(b,500,300);
+    {
+        showText("1",500,50);
+        BaseEnemiga1 be=new BaseEnemiga1();
+        addObject(be,1300,1300);
     }
 }

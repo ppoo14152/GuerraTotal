@@ -1,16 +1,23 @@
 import greenfoot.*;
+
 /**
- * Crea un anuncio en mundo de Ganaste que al salirte te mostrara otro letrero de continuar, hace que suene 
- * una explosion.Este te manda al nivel 2
+ * Write a description of class Ganaste here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
  */
 public class Ganaste extends World
 {
     private World w;
+    /**
+     * Constructor for objects of class Ganaste.
+     * 
+     */
     public Ganaste()
     {    
         super(800, 700, 1); 
-        Continuar bp=new Continuar();
-        addObject(bp,400,650);
+        
+        
         GreenfootSound music=new GreenfootSound("explosion.mp3");
         music.play();
         music.setVolume(50);

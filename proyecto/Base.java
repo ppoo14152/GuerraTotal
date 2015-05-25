@@ -2,7 +2,6 @@ import greenfoot.*;
 /**
  * Al tocarla te permite poder seleccionar entre un buldier y la bomba
  */
-
 public class Base extends Mira
 {
     

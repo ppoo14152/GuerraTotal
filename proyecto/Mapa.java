@@ -6,6 +6,7 @@ import greenfoot.*;
  */
 public class Mapa extends ScrollWorld
 {
+    private int canti;
     private Base f;
     private Buldier bul;
     private World w;
@@ -31,8 +32,7 @@ public class Mapa extends ScrollWorld
         addObject(m,400,300);
         f=new Base();
         addObject(f,150,150);
-        BaseEnemiga be=new BaseEnemiga();
-        addObject(be,1300,1300);
+        
         MiniMapa mm=new MiniMapa();
         addObject(mm,720,50);
         Nivel re=new Nivel();
@@ -40,8 +40,11 @@ public class Mapa extends ScrollWorld
         
         Reco rec=new Reco();
         rec.guardaRecords(400);
-        showText("1",500,50);
+        
     }
+   /**
+    * Se colocan los objetos aleatoriamente
+    */
     public void Ambiente()
     {
         for(int i=0;i<15;i++)

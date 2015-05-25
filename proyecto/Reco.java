@@ -17,7 +17,9 @@ public class Reco
         }
         
     }
-    
+    /**
+     * Guarda los puntos en la tabla de recors.
+     */
     public void guardaRecords(int puntos)
     {
          if((UserInfo.isStorageAvailable()) && (this.jugador != null) && ((puntos > this.jugador.getScore())) || (this.jugador.getInt(0))==0)

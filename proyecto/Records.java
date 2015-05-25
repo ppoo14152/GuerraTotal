@@ -8,6 +8,7 @@ public class Records extends Actor
     private World w;
     public Records()
     {
+        
         w=getWorld();
     }
     

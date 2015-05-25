@@ -13,7 +13,9 @@ public class BombaEnemiga extends Mira
         w=getWorld();
 
     }
-
+     /**
+      * Permite el movimiento de la bomba aleatoriamnete y girar en caso de toques la orilla
+      */
     public void act() 
     {
         int a=Greenfoot.getRandomNumber(360);
@@ -33,7 +35,9 @@ public class BombaEnemiga extends Mira
         perdiste();
 
     }
-
+    /**
+     * Gira al momento de que toca un obstaculo en el mapa
+     */
     public void estorbo()
     {
         int x=Greenfoot.getRandomNumber(100);
@@ -44,14 +48,18 @@ public class BombaEnemiga extends Mira
 
         }
     }
-
+    /**
+     * Genera un punto en el mini mapa para saber que existe
+     */
     public void localizacionMapa()
     {
 
         getWorld().addObject(new Malo(),680+(getX()/10),20+(getY()/10));
 
     }
-
+    /**
+     * Hce que pierdas cuando este toca tu base
+     */
     public void perdiste()
     {
         if(isTouching(Base.class))

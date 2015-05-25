@@ -6,4 +6,5 @@ comment1.target=void\ Mapa()
 comment1.text=\r\n\ Se\ inicializaron\ todo\ el\ enterno\ del\ mapa,\ los\ aleaorios\ son\ para\ que\ los\ obstaculos\ salgan\ \r\n\ en\ diferentes\ posiciones\ de\ todo\ el\ mapa\r\n
 comment2.params=
 comment2.target=void\ Ambiente()
+comment2.text=\r\n\ Se\ colocan\ los\ objetos\ aleatoriamente\r\n
 numComments=3
